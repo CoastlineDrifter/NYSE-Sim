@@ -12,6 +12,12 @@ public class BotManager {
     public BotManager() {
         this.bots = new ArrayList<>();
     }
+    public void addHFMarketMakerBot(String name, double cash, OrderBook orderBook, double spread, int size) {
+        HFMarketMakerBot bot = new HFMarketMakerBot(name, cash, orderBook, spread, size);
+        bots.add(bot);
+        bot.start();
+        System.out.println("Started Market Maker Bot: " + name);
+    }
 
     public void addMarketMaker(String name, double cash, OrderBook orderBook, double spread, int size) {
         MarketMakerBot bot = new MarketMakerBot(name, cash, orderBook, spread, size);
@@ -41,12 +47,7 @@ public class BotManager {
         System.out.println("Started Random Bot: " + name);
     }
 
-    public void addScalpingBot(String name, double cash, OrderBook orderBook, int size) {
-        ScalpingBot bot = new ScalpingBot(name, cash, orderBook, size);
-        bots.add(bot);
-        bot.start();
-        System.out.println("Started Scalping Bot: " + name);
-    }
+
 
     public void stopAllBots() {
         for (Object bot : bots) {
@@ -55,7 +56,6 @@ public class BotManager {
                 else if (bot instanceof MomentumBot) ((MomentumBot) bot).stop();
                 else if (bot instanceof MeanReversionBot) ((MeanReversionBot) bot).stop();
                 else if (bot instanceof RandomBot) ((RandomBot) bot).stop();
-                else if (bot instanceof ScalpingBot) ((ScalpingBot) bot).stop();
             } catch (Exception e) {
                 System.out.println("Error stopping bot: " + e.getMessage());
             }

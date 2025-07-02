@@ -10,6 +10,12 @@ module org.example.nysesim {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.desktop;
+    requires org.jfree.jfreechart;
+    requires io.fair_acc.chartfx;
+    requires io.fair_acc.dataset;
+    requires de.gsi.chartfx.chart;
+    requires de.gsi.chartfx.dataset;
 
     opens org.example.nysesim to javafx.fxml;
     exports org.example.nysesim;
